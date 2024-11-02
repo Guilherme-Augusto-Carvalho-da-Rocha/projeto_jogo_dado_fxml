@@ -1,14 +1,150 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
-<?import javafx.scene.layout.VBox?>
-<?import javafx.scene.control.Label?>
-<?import javafx.scene.control.Button?>
 <?import javafx.geometry.Insets?>
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.TextField?>
+<?import javafx.scene.image.Image?>
+<?import javafx.scene.image.ImageView?>
+<?import javafx.scene.layout.HBox?>
+<?import javafx.scene.layout.VBox?>
 
-<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jogo.dados.controller.PrimaryController">
+<VBox alignment="CENTER" spacing="20.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jogo.dados.controller.PrimaryController">
    <children>
-      <Label text="Primary View" />
-      <Button fx:id="primaryButton" text="Switch to Secondary View" onAction="#switchToSecondary"/>
+      <Label text="Jogo de dados" />
+      <ImageView fx:id="img_dice_moving" fitHeight="150.0" fitWidth="200.0" pickOnBounds="true" preserveRatio="true">
+         <image>
+            <Image url="@../../img/dices_moving.gif" />
+         </image>
+      </ImageView>
+      <Label text="Regras do jogo:" />
+      <Label text="- Cada jogador deve inserir seu nome e o valor o qual deseja que os dados sorteiem" />
+      <Label text="- Após isso, clque em jogar e os dados serão rolados, ganha quem advinhar o valor do dado!" />
+      <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="100.0" prefWidth="448.0">
+         <children>
+            <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="325.0" prefWidth="282.0">
+               <children>
+                        <Label text="Jogadores" />
+                        <TextField fx:id="namePlayer1" alignment="TOP_LEFT" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="266.0" promptText="jogador 1" style="-fx-alignment: inline;">
+                     <VBox.margin>
+                        <Insets top="3.0" />
+                     </VBox.margin>
+                  </TextField>
+                        <TextField fx:id="namePlayer2" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="266.0" promptText="jogador 2" style="-fx-alignment: inline;">
+                     <VBox.margin>
+                        <Insets top="3.0" />
+                     </VBox.margin>
+                  </TextField>
+                        <TextField fx:id="namePlayer3" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="266.0" promptText="jogador 3" style="-fx-alignment: inline;">
+                     <VBox.margin>
+                        <Insets top="3.0" />
+                     </VBox.margin>
+                  </TextField>
+                        <TextField fx:id="namePlayer4" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="266.0" promptText="jogador 4" style="-fx-alignment: inline;">
+                     <VBox.margin>
+                        <Insets top="3.0" />
+                     </VBox.margin>
+                  </TextField>
+                        <TextField fx:id="namePlayer5" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="266.0" promptText="jogador 5" style="-fx-alignment: inline;">
+                     <VBox.margin>
+                        <Insets top="3.0" />
+                     </VBox.margin>
+                  </TextField>
+                        <TextField fx:id="namePlayer6" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="266.0" promptText="jogador 6" style="-fx-alignment: inline;">
+                     <VBox.margin>
+                        <Insets top="3.0" />
+                     </VBox.margin>
+                  </TextField>
+                        <TextField fx:id="namePlayer7" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="266.0" promptText="jogador 7" style="-fx-alignment: inline;">
+                     <VBox.margin>
+                        <Insets top="3.0" />
+                     </VBox.margin>
+                  </TextField>
+                        <TextField fx:id="namePlayer8" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="266.0" promptText="jogador 8" style="-fx-alignment: inline;">
+                     <VBox.margin>
+                        <Insets top="3.0" />
+                     </VBox.margin>
+                  </TextField>
+                        <TextField fx:id="namePlayer9" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="266.0" promptText="jogador 9" style="-fx-alignment: inline;">
+                     <VBox.margin>
+                        <Insets top="3.0" />
+                     </VBox.margin>
+                  </TextField>
+                        <TextField fx:id="namePlayer10" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="266.0" promptText="jogador 10" style="-fx-alignment: inline;">
+                     <VBox.margin>
+                        <Insets top="3.0" />
+                     </VBox.margin>
+                  </TextField>
+                        <TextField fx:id="namePlayer11" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="266.0" promptText="jogador 11" style="-fx-alignment: inline;">
+                     <VBox.margin>
+                        <Insets top="3.0" />
+                     </VBox.margin>
+                  </TextField>
+               </children>
+            </VBox>
+            <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="292.0" prefWidth="151.0">
+               <children>
+                        <Label text="Aposta" />
+                        <TextField fx:id="aposta1" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="25.0" prefWidth="149.0" promptText="aposta do jogador 1">
+                     <VBox.margin>
+                        <Insets top="3.0" />
+                     </VBox.margin>
+                  </TextField>
+                        <TextField fx:id="aposta2" maxHeight="-Infinity" maxWidth="-Infinity" promptText="aposta do jogador 2">
+                     <VBox.margin>
+                        <Insets top="3.0" />
+                     </VBox.margin>
+                  </TextField>
+                        <TextField fx:id="aposta3" maxHeight="-Infinity" maxWidth="-Infinity" promptText="aposta do jogador 3">
+                     <VBox.margin>
+                        <Insets top="3.0" />
+                     </VBox.margin>
+                  </TextField>
+                        <TextField fx:id="aposta4" maxHeight="-Infinity" maxWidth="-Infinity" promptText="aposta do jogador 4">
+                     <VBox.margin>
+                        <Insets top="3.0" />
+                     </VBox.margin>
+                  </TextField>
+                        <TextField fx:id="aposta5" maxHeight="-Infinity" maxWidth="-Infinity" promptText="aposta do jogador 5">
+                     <VBox.margin>
+                        <Insets top="3.0" />
+                     </VBox.margin>
+                  </TextField>
+                        <TextField fx:id="aposta6" maxHeight="-Infinity" maxWidth="-Infinity" promptText="aposta do jogador 6">
+                     <VBox.margin>
+                        <Insets top="3.0" />
+                     </VBox.margin>
+                  </TextField>
+                        <TextField fx:id="aposta7" maxHeight="-Infinity" maxWidth="-Infinity" promptText="aposta do jogador 7">
+                     <VBox.margin>
+                        <Insets top="3.0" />
+                     </VBox.margin>
+                  </TextField>
+                        <TextField fx:id="aposta8" maxHeight="-Infinity" maxWidth="-Infinity" promptText="aposta do jogador 8">
+                     <VBox.margin>
+                        <Insets top="3.0" />
+                     </VBox.margin>
+                  </TextField>
+                        <TextField fx:id="aposta9" maxHeight="-Infinity" maxWidth="-Infinity" promptText="aposta do jogador 9">
+                     <VBox.margin>
+                        <Insets top="3.0" />
+                     </VBox.margin>
+                  </TextField>
+                        <TextField fx:id="aposta10" maxHeight="-Infinity" maxWidth="-Infinity" promptText="aposta do jogador 10">
+                     <VBox.margin>
+                        <Insets top="3.0" />
+                     </VBox.margin>
+                  </TextField>
+                        <TextField fx:id="aposta11" maxHeight="-Infinity" maxWidth="-Infinity" promptText="aposta do jogador 11">
+                     <VBox.margin>
+                        <Insets top="3.0" />
+                     </VBox.margin>
+                  </TextField>
+               </children>
+            </VBox>
+         </children>
+      </HBox>
+      <Button fx:id="primaryButton" onAction="#switchToSecondary" text="Jogar" />
    </children>
    <padding>
       <Insets bottom="20.0" left="20.0" right="20.0" top="20.0" />

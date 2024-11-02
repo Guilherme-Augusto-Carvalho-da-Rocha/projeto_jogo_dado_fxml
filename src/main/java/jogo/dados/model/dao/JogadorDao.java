@@ -48,7 +48,7 @@ public class JogadorDao implements Dao<Jogador> {
     @Override
     public List<Jogador> getAll() { //listAll (if the database is huge, consider the use of pagination)
         List<Jogador> jogadores = new ArrayList<Jogador>();
-        String sql = "select name, wins from rankingJogadores"; 
+        String sql = "select name, wins from rankingJogadores order by"; 
         Connection conn = null;
         // prepares a query
         PreparedStatement preparedStatement = null;

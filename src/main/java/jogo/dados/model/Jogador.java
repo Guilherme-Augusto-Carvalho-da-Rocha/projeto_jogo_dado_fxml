@@ -2,12 +2,19 @@ package jogo.dados.model;
 
 public class Jogador {
     private long id;
-    private int winCount;
+    private int winCount = 0;
     public String nome;
     public int valor_aposta;
+    private boolean venceu = false;
+
 
     public Jogador(){
 
+    }
+
+    public Jogador(String nome, int valor_aposta) {
+        this.nome = nome;
+        this.valor_aposta = valor_aposta;
     }
 
     public Jogador(long id, int winCount, String nome) {
@@ -27,6 +34,11 @@ public class Jogador {
     public void setWinCount(int winCount) {
         this.winCount = winCount;
     }
+
+    public void improveWinCount(){
+        this.winCount = winCount++;
+    }
+
     public String getNome() {
         return nome;
     }
@@ -38,6 +50,14 @@ public class Jogador {
     }
     public void setValor_aposta(int valor_aposta) {
         this.valor_aposta = valor_aposta;
+    }
+
+    public void setVenceu(boolean venceu){
+        this.venceu = venceu;
+    }
+
+    public boolean getVenceu(){
+        return this.venceu;
     }
 
     @Override
