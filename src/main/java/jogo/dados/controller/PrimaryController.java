@@ -98,10 +98,6 @@ public class PrimaryController {
         
     }
 
-    public Jogo getJogo(){
-        return this.jogo;
-    }
-
     public void VerificarVitoria(){
         boolean venceu = false;
         DadoDao dadoDao = new DadoDao();
@@ -125,6 +121,7 @@ public class PrimaryController {
                         jogadorDao.update(jogo.getJogadores().get(i), null);
                         jogo.getJogadores().get(i).setVenceu(true);
                         venceu = jogo.getJogadores().get(i).getVenceu();
+                        j = 2147483646;
                     } 
                     j++;
                 }

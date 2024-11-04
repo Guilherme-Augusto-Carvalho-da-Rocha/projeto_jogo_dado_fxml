@@ -25,8 +25,11 @@
             </ImageView>
          </children>
       </HBox>
-      <Label fx:id="Ganhadores" text="Mostrar ganhadores" />
-      <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="59.0" prefWidth="200.0">
+      <Label text="Menu:">
+         <VBox.margin>
+            <Insets top="10.0" />
+         </VBox.margin></Label>
+      <HBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="31.0" prefWidth="200.0">
          <children>
             <Button fx:id="PlayAgain" mnemonicParsing="false" onAction="#SwitchtoPrimary" text="Jogar novamente" />
             <Button fx:id="GoToRanking" mnemonicParsing="false" onAction="#SwitchtoQuaternary" text="Ver Ranking">
