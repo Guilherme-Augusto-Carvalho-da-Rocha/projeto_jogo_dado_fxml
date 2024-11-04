@@ -15,7 +15,7 @@
          </image>
       </ImageView>
       <Label text="Carregando..." />
-      <Label text="Se essa tela demorar demais significa que ninguém ganhou, recomenda-se cancelar o jogo e tentar denovo" />
+      <Label fx:id="lblCounter" text="Se essa tela demorar demais significa que ninguém ganhou, recomenda-se cancelar o jogo e tentar denovo" />
         <Button fx:id="secondaryButton" onAction="#switchToPrimary" text="Cancelar Jogo" />
     </children>
     <padding>

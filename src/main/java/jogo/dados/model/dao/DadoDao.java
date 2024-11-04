@@ -6,14 +6,12 @@ import java.sql.ResultSet;
 import java.util.ArrayList;
 import java.util.List;
 
-import jogo.dados.model.Jogador;
+import jogo.dados.model.Dado;
 
-
-public class JogadorDao implements Dao<Jogador> {
-    @Override
-    public Jogador get(Long id) {
-        Jogador jogador = null;
-        String sql = "select * from rankingJogadores where id = ?"; // ? is a parameters for the prepared statement
+public class DadoDao implements Dao<Dado> {
+    public Dado get(Long id) {
+        Dado dado = null;
+        String sql = "select * from dices where id = ?"; // ? is a parameters for the prepared statement
         Connection conn = null;
         // prepares a query
         PreparedStatement preparedStatement = null;
@@ -27,10 +25,9 @@ public class JogadorDao implements Dao<Jogador> {
             resultSet = preparedStatement.executeQuery();
             // iterates the resultSet and stores in the object the column values from the database
             while (resultSet.next()){
-                jogador = new Jogador();
-                jogador.setId(resultSet.getLong("id"));
-                jogador.setNome(resultSet.getString("name"));
-                jogador.setWinCount(resultSet.getInt("wins"));
+                dado = new Dado();
+                dado.setId(resultSet.getLong("id"));
+                dado.setValorFace(resultSet.getInt("valorFace"));
             }
         } catch(Exception e) {
             e.printStackTrace();
@@ -43,12 +40,12 @@ public class JogadorDao implements Dao<Jogador> {
                 e.printStackTrace();
             }
         }
-        return jogador;
+        return dado;
     }
     @Override
-    public List<Jogador> getAll() { //listAll (if the database is huge, consider the use of pagination)
-        List<Jogador> jogadores = new ArrayList<Jogador>();
-        String sql = "select * from rankingJogadores order by wins"; 
+    public List<Dado> getAll() { //listAll (if the database is huge, consider the use of pagination)
+        List<Dado> dados = new ArrayList<Dado>();
+        String sql = "select * from dices"; 
         Connection conn = null;
         // prepares a query
         PreparedStatement preparedStatement = null;
@@ -60,12 +57,11 @@ public class JogadorDao implements Dao<Jogador> {
             resultSet = preparedStatement.executeQuery();
             // iterates the resultSet and stores in the object the column values from the database
             while (resultSet.next()){
-                Jogador jogador = new Jogador();
-                jogador.setId(resultSet.getLong("id"));
-                jogador.setNome(resultSet.getString("name"));
-                jogador.setWinCount(resultSet.getInt("wins"));
+                Dado dado = new Dado();
+                dado.setId(resultSet.getLong("id"));
+                dado.setValorFace(resultSet.getInt("valorFace"));
 
-                jogadores.add(jogador); //add the object filled with database data to products list
+                dados.add(dado); //add the object filled with database data to products list
             }
         } catch(Exception e) {
             e.printStackTrace();
@@ -78,12 +74,12 @@ public class JogadorDao implements Dao<Jogador> {
                 e.printStackTrace();
             }
         }
-        return jogadores;
+        return dados;
     }
 
     @Override
-    public int save(Jogador jogador) {
-        String sql = "insert into rankingJogadores (name, wins)" + " values (?, ?)"; 
+    public int save(Dado dado) {
+        String sql = "insert into dices (valorFace)" + " values (?)"; 
         Connection conn = null;
         // prepares a query
         PreparedStatement preparedStatement = null;
@@ -91,8 +87,7 @@ public class JogadorDao implements Dao<Jogador> {
         try {
             conn = DBConnection.getConnection();
             preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setString(1, jogador.getNome());
-            preparedStatement.setInt(2, jogador.getWinCount());
+            preparedStatement.setInt(1, dado.getValorFace());
             
             preparedStatement.execute(); //it is not a query. It is an insert command
             
@@ -111,9 +106,9 @@ public class JogadorDao implements Dao<Jogador> {
         return 0;
     }
     @Override
-    public boolean update(Jogador jogador, String[] params) {
+    public boolean update(Dado dado, String[] params) {
         // if you use params, use parse methods (parseFloat, parseLong etc.)
-        String sql = "update rankingJogadores set name = ?, wins = ? where id = ?"; 
+        String sql = "update dices set valorFace = ? where id = ?"; 
         Connection conn = null;
         // prepares a query
         PreparedStatement preparedStatement = null;
@@ -121,9 +116,8 @@ public class JogadorDao implements Dao<Jogador> {
         try {
             conn = DBConnection.getConnection();
             preparedStatement = conn.prepareStatement(sql);
-            preparedStatement.setString(1, jogador.getNome());
-            preparedStatement.setInt(2, jogador.getWinCount());
-            preparedStatement.setLong(3, jogador.getId());
+            preparedStatement.setInt(1, dado.getValorFace());
+            preparedStatement.setLong(2, dado.getId());
             
             preparedStatement.execute(); //it is not a query. It is an insert command
             
@@ -141,10 +135,9 @@ public class JogadorDao implements Dao<Jogador> {
         }
         return false;
     }
-
     @Override
-    public boolean delete(Jogador jogador) {
-        String sql = "delete from rankingJogadores where id = ?"; 
+    public boolean delete(Dado dado) {
+        String sql = "delete from dices where id = ?"; 
         Connection conn = null;
         // prepares a query
         PreparedStatement preparedStatement = null;
@@ -153,7 +146,7 @@ public class JogadorDao implements Dao<Jogador> {
             conn = DBConnection.getConnection();
             preparedStatement = conn.prepareStatement(sql);
             
-            preparedStatement.setLong(1, jogador.getId());
+            preparedStatement.setLong(1, dado.getId());
             
             preparedStatement.execute(); //it is not a query. It is an insert command
             
@@ -172,4 +165,5 @@ public class JogadorDao implements Dao<Jogador> {
         return false;
     }
     
+
 }

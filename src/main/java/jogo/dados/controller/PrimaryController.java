@@ -9,11 +9,13 @@ import javafx.scene.control.TextField;
 import javafx.scene.image.ImageView;
 import jogo.dados.App;
 import jogo.dados.model.Jogador;
+import jogo.dados.model.Jogo;
+import jogo.dados.model.dao.DadoDao;
 import jogo.dados.model.dao.JogadorDao;
 
 //inserir jogadores e apostas
 public class PrimaryController {
-    ArrayList<Jogador> jogadores = new ArrayList<>();
+    Jogo jogo = new Jogo();
 
     @FXML
     private ImageView dices_moving;
@@ -47,10 +49,15 @@ public class PrimaryController {
 
     @FXML
     private void switchToSecondary(ActionEvent event) throws IOException {
-        
+        setJogadores();
+        VerificarVitoria();
+        App.setRoot("secondary");
+    }
+
+    public void  setJogadores(){
+        ArrayList<Jogador> jogadores = new ArrayList<>();
         ArrayList<TextField> caixas = new ArrayList<>();
         ArrayList<TextField> apostas = new ArrayList<>();
-        JogadorDao jogadorDao = new JogadorDao();
 
         caixas.add(namePlayer1);
         caixas.add(namePlayer2);
@@ -85,16 +92,49 @@ public class PrimaryController {
             } else {
                 Jogador jogador = new Jogador(nome, aposta);
                 jogadores.add(jogador);
+                jogo.setJogadores(jogadores);
             }
         }
-
-        App.setRoot("secondary");
-    }
-    public ArrayList<Jogador> getJogadores() {
-        return jogadores;
-    }
-
-    public PrimaryController(){
         
     }
-}
+
+    public Jogo getJogo(){
+        return this.jogo;
+    }
+
+    public void VerificarVitoria(){
+        boolean venceu = false;
+        DadoDao dadoDao = new DadoDao();
+        JogadorDao jogadorDao = new JogadorDao();
+        jogo.getDado1().randomValorFace();
+        jogo.getDado2().randomValorFace();
+        int valor_venceu = jogo.getDado1().getValorFace() + jogo.getDado2().getValorFace();
+        dadoDao.save(jogo.getDado1());
+        dadoDao.save(jogo.getDado2());
+        for (int i = 0; i>10; i++){
+            String nome = jogo.getJogadores().get(i).getNome();
+            if(nome == null){
+                break;
+            } else if(valor_venceu == jogo.getJogadores().get(i).getValor_aposta()) {
+                int j = 0;
+                while(jogadorDao.getAll().get(j) != null){
+                    if (jogadorDao.getAll().get(j).getNome().equals(jogo.getJogadores().get(i).getNome())) {
+                        jogo.getJogadores().get(i).setWinCount(jogadorDao.getAll().get(j).getWinCount());
+                        jogo.getJogadores().get(i).setId(jogadorDao.getAll().get(j).getId());
+                        jogo.getJogadores().get(i).improveWinCount();
+                        jogadorDao.update(jogo.getJogadores().get(i), null);
+                        jogo.getJogadores().get(i).setVenceu(true);
+                        venceu = jogo.getJogadores().get(i).getVenceu();
+                    } 
+                    j++;
+                }
+                if(venceu == false){
+                    jogo.getJogadores().get(i).improveWinCount();
+                    jogadorDao.save(jogo.getJogadores().get(i));
+                    jogo.getJogadores().get(i).setVenceu(true);
+                    venceu = jogo.getJogadores().get(i).getVenceu();
+                    }
+                }
+            }
+        }
+    }
