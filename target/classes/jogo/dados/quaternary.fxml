@@ -10,7 +10,15 @@
 <VBox alignment="CENTER" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/23.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="jogo.dados.controller.QuaternaryController">
    <children>
       <Label text="Ranking" />
-      <ListView fx:id="rankList" maxHeight="-Infinity" maxWidth="-Infinity" prefHeight="200.0" prefWidth="422.0" />
+      <JFXListView fx:id="rankList">
+      <items>
+         <Label fx:id="primeiro" text = "algo ai"/>
+         <Label fx:id="segundo" text = "algo ai"/>
+         <Label fx:id="terceiro" text = "algo ai"/>
+         <Label fx:id="quarto" text = "algo ai"/>
+         <Label fx:id="quinto" text = "algo ai"/>
+      </items>
+      </JFXListView>
       <Button mnemonicParsing="false" onAction="#switchToPrimary" text="Jogar novamente" />
    </children>
 </VBox>

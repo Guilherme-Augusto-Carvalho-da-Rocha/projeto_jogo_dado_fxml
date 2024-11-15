@@ -39,30 +39,30 @@ public class SecondaryController {
         App.setRoot("primary");
     }
 
-    private void switchToTerciary() throws IOException{
+    @FXML
+    private void switchToTerciary(ActionEvent event) throws IOException{
         App.setRoot("terciary");
     }
 
     @FXML
-    public void initialize() throws IOException{
-        //temporizador (exemplo)
-        
+    public void initialize() throws IOException {
+        // Temporizador (exemplo)
         lblCounter.setText("segundos esperando: " + String.valueOf(counter));
-
+    
         Timeline timeline = new Timeline(new KeyFrame(Duration.seconds(1), e -> {
             counter++;
             lblCounter.setText("segundos esperando: " + String.valueOf(counter));
         }));
-        timeline.setCycleCount(5); //Animation.INDEFINITE (-1)
+        timeline.setCycleCount(5); // Animation.INDEFINITE (-1)
         timeline.play();
         timeline.setOnFinished(e -> {
             try {
-                switchToTerciary();
+                App.setRoot("terciary");
             } catch (IOException e1) {
                 e1.printStackTrace();
             }
         });
-        } 
     }
+}
 
 

@@ -6,7 +6,6 @@ module jogo.dados {
     requires com.jfoenix;
 
     opens jogo.dados.controller to javafx.fxml;
-    opens tecinfo.poo.model to javafx.base;
-    
+
     exports jogo.dados;
 }

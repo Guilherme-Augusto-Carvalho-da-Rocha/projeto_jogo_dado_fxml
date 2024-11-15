@@ -14,19 +14,20 @@ public class QuaternaryController {
 
     @FXML
     private JFXListView<Label> rankList;
+    Label primeiro;
+    Label segundo;
+    Label terceiro;
+    Label quarto;
+    Label quinto;
 
     @FXML
     private void switchToPrimary(ActionEvent event) throws IOException {
         App.setRoot("primary");
     }
-
+    
+    @FXML
     public void initialize(){
         JogadorDao jogadorDao = new JogadorDao();
-        Label primeiro  = new Label();
-        Label segundo = new Label();
-        Label terceiro  = new Label();
-        Label quarto = new Label();
-        Label quinto = new Label();
         primeiro.setText("1°"+jogadorDao.getAll().get(0).getNome());
         segundo.setText("2°"+jogadorDao.getAll().get(1).getNome());
         terceiro.setText("3°"+jogadorDao.getAll().get(2).getNome());

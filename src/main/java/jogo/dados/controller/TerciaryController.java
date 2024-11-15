@@ -1,16 +1,17 @@
 package jogo.dados.controller;
 
 import java.io.IOException;
+import java.util.List;
 
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.image.Image;
 import javafx.scene.image.ImageView;
+import javafx.scene.layout.VBox;
 import jogo.dados.App;
 import jogo.dados.model.Dado;
 import jogo.dados.model.dao.DadoDao;
 
-public class TerciaryController {
+public class TerciaryController extends VBox {
     
     @FXML
     ImageView primeiroDado;
@@ -28,17 +29,21 @@ public class TerciaryController {
 
     @FXML
     private void initialize() throws IOException{
+        try {
         DadoDao dadoDao = new DadoDao();
-        Dado dado1 = new Dado();
-        Dado dado2 = new Dado();
-        dado1.setId(dadoDao.getAll().get(0).getId());
-        dado2.setId(dadoDao.getAll().get(1).getId());
-        dado1.setValorFace(dadoDao.getAll().get(0).getValorFace());
-        dado2.setValorFace(dadoDao.getAll().get(1).getValorFace());
-        primeiroDado.setImage(new Image("dado_" + dado1.getValorFace() + ".png"));
-        segundoDado.setImage(new Image("dado_" + dado2.getValorFace() + ".png"));
-        dadoDao.delete(dado1);
-        dadoDao.delete(dado2);
-        
+        List<Dado> dados = dadoDao.getAll();
+
+        if (dados.size() >= 2) {
+            Dado dado1 = dados.get(0);
+            Dado dado2 = dados.get(1);
+            System.out.println("Dado 1: " + dado1);
+            System.out.println("Dado 2: " + dado2);
+        } else {
+            System.out.println("Dados insuficientes na lista: " + dados.size());
+        }
+    } catch (Exception e) {
+        e.printStackTrace();
     }
 }
+    }
+
